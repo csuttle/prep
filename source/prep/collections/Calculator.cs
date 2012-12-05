@@ -5,18 +5,20 @@ namespace prep.collections
 {
   public class Calculator
   {
-      public IDbConnection idbc;
+      public IDbConnection connection;
 
-      public Calculator()
+      public Calculator(IDbConnection connection)
       {
+          this.connection = connection;
       }
 
       public int add(int i, int i1)
       {
-          idbc.Open();
-
           if ((i < 0) || (i1 < 0))
               throw new ArgumentException();
+
+          connection.Open();
+
           return i + i1;
       }
   }
